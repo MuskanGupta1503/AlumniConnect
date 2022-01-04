@@ -1,0 +1,35 @@
+{% extends 'user_navigation.html' %}
+{% block content %}
+<form method="POST" class="container mt-5" enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  <div class="form-row">
+      <div class="form-group col-md-6" >
+          <label>Resume</label>
+          <input type="file" required name="resume" class="form-control" >
+      </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-6 mt-3" >
+          <label>Tell about basic profile, strengths, why to give you referrral? Also Mention Job Id</label>
+          <textarea name="description" class="form-control"></textarea>
+      </div>
+  </div>
+  <br>
+  <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+
+{% ifequal error "no" %}
+<script>
+  alert("Referral requested");
+  window.location=('{% url 'know_your_family' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+  alert("Something went wrong, Try Again...");
+</script>
+{% endifequal %}
+
+{% endblock %}

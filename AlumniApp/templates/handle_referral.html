@@ -1,0 +1,27 @@
+{% extends 'user_navigation.html' %}
+{% block content %}
+<div class="container">
+<table class="table table-hover mt-4">
+    <thead>
+      <tr>
+        <th scope="col">S.no</th>
+        <th scope="col">Name</th>
+        <th scope="col">Apply Date</th>
+        <th scope="col">Resume</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for referral in referrals %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{referral.user.first_name}} {{referral.user.last_name}}</td>
+        <td>{{referral.applydate}}</td>
+        <td><a href="{{referral.resume.url}}">Download Resume</a></td>
+        <td>Read More</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

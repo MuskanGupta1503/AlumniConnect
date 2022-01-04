@@ -1,0 +1,26 @@
+{% extends 'user_navigation.html' %}
+{% load static %}
+
+{% block content %}
+<a href="{% url 'create_job_post' %}" class="btn btn-primary btn-md" style="margin-top: 30px; margin-left: 30px; border-radius: 20px;">
+    Have a job opening? Register here and help the community</a>
+  <section class="section">
+    <div class="container">
+      <div class="row">
+    {% for i in data %}
+        <div class="col-md-4">
+          <div class="step">
+            <h3 style="text-shadow: 1px 1px 3px blue;">{{i.company}}</h3>
+          <p class="card-text">{{i.role}} | {{i.eligibility}}</p>
+          <p class="card-text"><img src="../static/assets/img/pin.png" style="height: 25px;"> {{i.location}}</p>
+          <br>
+          <p class="card-text">{{i.description}}</p>
+          <a href="{{i.applylink}}" class="btn btn-primary btn-md">Apply now</a>
+          </div>
+        </div>
+    {% endfor %}
+      </div>
+    </div>
+
+  </section>
+{% endblock %}

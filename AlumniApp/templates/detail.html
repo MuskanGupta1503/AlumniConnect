@@ -1,0 +1,77 @@
+{% extends 'user_navigation.html' %}
+
+{% block content %}
+
+  <!-- <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+    {% for p in photos %}
+      <li data-target="#carousel-example-1z" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %} active {% endif %}"></li>
+    {% endfor %}
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      {% for p in photos %}
+      <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
+        {% if p.images.url|slice:"-4:" == ".mp4" %} 
+        <video width='320' height= '240' controls>
+            <source src="{{p.images.url}}" type='video/mp4'>
+            Your browser does not support the video tag.
+            </source>
+            </video>
+        {% else %}
+        <img class="d-block w-100" style="height: 500px; " src="{{p.images.url}}"
+          alt="First slide">
+        {% endif %}
+      </div>
+      {% endfor %}
+
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev" style="background-color: black;">
+      <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
+      <span class="sr-only" style="background-color: black;">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next" style="background-color: black;">
+      <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
+      <span class="sr-only" style="background-color: black;">Next</span>
+    </a>
+  </div>
+  </div> -->
+
+  <div>
+    <a href="{% url 'blog' %}" class="btn btn-primary" style="margin-left: 30px; margin-bottom: 20px;">Back</a>
+  </div>
+<section class="site-section mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 blog-content mt-4">
+        <h2 class="section-heading">{{post.title}}</h2>
+      
+        <p style="color: black; font-size: large;">{{post.description}}</p>
+      
+        <div class="row mb-5">
+          {% for p in photos %}
+          <div class="col-md-6">
+            {% if p.images.url|slice:"-4:" == ".mp4" %} 
+            <video width='320' height= '240' controls>
+                <source src="{{p.images.url}}" type='video/mp4'>
+                Your browser does not support the video tag.
+                </source>
+                </video>
+            {% else %}
+            <figure><img src="{{p.images.url}}" style="width: 300px; height: 300px;" class="img-fluid" >
+              <!-- <figcaption>This is an image caption</figcaption> -->
+            </figure>
+            {% endif %}
+          </div>
+          
+          {% endfor %}
+        </div>
+        
+      </div>
+      
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  {% endblock %}

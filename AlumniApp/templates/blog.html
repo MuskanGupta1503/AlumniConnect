@@ -1,0 +1,39 @@
+{% extends 'user_navigation.html' %}
+{% load static %}
+{% block content %}
+<div>
+  <a href="{% url 'create-post' %}" class="btn btn-primary" style="margin-left: 30px; margin-bottom: 20px;">Create new posts</a>
+</div>
+<div class="container">
+<div class="row row-cols-1 row-cols-md-2">
+  {% for post,p in data %}
+  <div class="col mb-4">
+    <div class="card" style="align-items: center; align-content: center; margin: 5px 5px; border: none;">
+      <div class="card-body" 
+      style="border: solid 1px; padding: 50px;
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+        {% if p.images.url|slice:"-4:" == ".mp4" %} 
+        <video width='350' height= '350' controls >
+            <source src="{{p.images.url}}" type='video/mp4'>
+            </source>
+            </video>
+        {% else %}
+        <a href="#" class="d-block mb-4">
+          <img src="{{p.images.url}}" alt="Image" class="img-fluid" style="height: 330px; 
+          width: 330px; border-radius: 20px;">
+        </a>
+         {% endif %}
+        <h4 class="card-title">{{post.title}}</h4>        
+        <a href="{% url 'detail' post.id %}" class="btn btn-primary btn-md">Read more</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+</div>
+
+
+
+
+{% endblock %}

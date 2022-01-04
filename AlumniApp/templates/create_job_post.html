@@ -1,0 +1,58 @@
+{% extends 'user_navigation.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<form method="POST" class="container mt-5" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="form-row">
+        <div class="form-group col-md-6" >
+            <label>Company</label>
+            <input type="text" required name="company" class="form-control" placeholder="Enter company">
+        </div>
+        <div class="form-group col-md-6 " >
+            <label>Role</label>
+            <input type="text" required name="role" class="form-control" placeholder="Enter role">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 mt-3" >
+            <label>Eligibility</label>
+            <input type="text" name="eligibility" class="form-control" placeholder="Enter eligibility">
+        </div>
+        <div class="form-group col-md-6 mt-3" >
+            <label>Location</label>
+            <input type="text" name="location" class="form-control" placeholder="Enter location">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 mt-3" >
+            <label>Apply link</label>
+            <input type="text" name="applylink" class="form-control" placeholder="Enter applylink">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6 mt-3" >
+            <label>Description</label>
+            <textarea name="description" class="form-control"></textarea>
+        </div>
+    </div>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+
+{% ifequal error "no" %}
+<script>
+    // alert("Job details has been added");
+    window.location=('{% url 'job_openings' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Something went wrong, Try Again...");
+</script>
+{% endifequal %}
+{% endblock %}
